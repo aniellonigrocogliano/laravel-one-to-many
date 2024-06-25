@@ -10,6 +10,7 @@
                 <p class="card-text">Data di creazione: {{ $project->creation_date }}</p>
                 <p class="card-text">Descrizione: {{ $project->description }}</p>
                 <p class="card-text">Contenuto: {{ $project->content }}</p>
+                <p class="card-text">Tipologia: {{ $project->type?->name }}</p>
             </div>
         </div>
         <div class="d-flex justify-content-start align-items-center m-3">

@@ -8,6 +8,7 @@ use App\Models\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -44,7 +45,7 @@ class ProjectController extends Controller
         $project = new Project();
         $project->fill($data);
         $project->save();
-        return redirect()->route("admin.projects.show", ["project" => $project->slug]);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
@@ -60,7 +61,8 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('admin.project.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.project.edit', compact('project', 'types'));
     }
 
 
@@ -82,7 +84,7 @@ class ProjectController extends Controller
 
 
         $project->update($data);
-        return redirect()->route('admin.dashboard', $project->slug)->with('message', 'post ' . $project->title . ' è stato modificato');
+        return redirect()->route('admin.dashboard');
     }
 
 
